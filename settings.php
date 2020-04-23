@@ -54,12 +54,6 @@ $settings->add(new admin_setting_configtext('local_enrolmentwatcher/filtervalue'
     $name, $description, ''
 ));
 
-// $name = new lang_string('studentroles', 'local_enrolmentwatcher');
-// $description = new lang_string('studentroles_help', 'local_enrolmentwatcher');
-// $setting->add(new admin_setting_configmultiselect('local_enrolmentwatcheer/studentroles',
-//     $name, $description, 'student'
-// ));
-
 // Role assignment heading and description.
 $name = 'local_enrolmentwatcher/roleassignment';
 $title = new lang_string('roleassignment', 'local_enrolmentwatcher');

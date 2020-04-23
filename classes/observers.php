@@ -31,7 +31,7 @@ use stdClass;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Handles events
+ * Handles role assignment events.
  */
 class observers {
     /**
@@ -47,20 +47,21 @@ class observers {
         $config = get_config('local_enrolmentwatcher');
         
         $assignee = $DB->get_record('user', ['id' => $event->relateduserid]);
-        $data = null;
+        $field = null;
         if (strpos($config->filterfield, 'uip') === 0) {
             $fieldparts = explode('_', $config->filterfield);
-            $data = $DB->get_field('user_info_data', 'data', ['fieldid' => $fieldparts[1], 'userid' => $assignee->id]);
+            $field = $DB->get_field('user_info_data', 'data', ['fieldid' => $fieldparts[1], 'userid' => $assignee->id]);
         } else {
-            $data = $assignee->{$config->filterfield};
+            $field = $assignee->{$config->filterfield};
         }
         
         // What to do if there's nothing there? Nothing. Ignore it.
-        if (!$data) {
+        if (!$field) {
             return;
         }
 
-        if (strpos($data, $config->filtervalue) === false) {
+        // Does this field contain the information we need to check the role assignment?
+        if (strpos($field, $config->filtervalue) === false) {
             // No match.
             return;
         }
@@ -72,27 +73,18 @@ class observers {
             return;
         }
 
-        //$role = $DB->get_record('role', ['id' => $event->objectid]);
-        $roleassigned = ($studentroles[$event->objectid]->name) ? ($studentroles[$event->objectid]->name) : ($studentroles[$event->objectid]->shortname);
+        // A role can be assigned in different context levels. Usually this is course (50), but it could be something different.
+        $context = context::instance_by_id($event->contextid);
+
+        $roleassigned = $DB->get_record('role', ['id' => $event->objectid]);
+        // Gets localised role name.
+        $roleassignedname = role_get_name($roleassigned, $context);
 
         $ra = $DB->get_record('role_assignments', ['id' => $event->other['id']]);
 
-        $assigneeurl = new moodle_url('/user/profile.php', array(
-            'id' => $assignee->id
-        ));
         $assigneename = fullname($assignee, true);
-
         $assigner = $DB->get_record('user', ['id' => $ra->modifierid]);
-        $assignerurl = new moodle_url('/user/profile.php', array(
-            'id' => $assigner->id
-        ));
         $assignername = fullname($assigner, true);
-
-        // A role can be assigned in different context levels. Usually this is course (50), but it could be something different.
-        $context = context::instance_by_id($event->contextid);
-        $levelname = $context->get_level_name(); // Course, coursecat etc.
-        $contexturl = $context->get_url(); // Link to the course or coursemod.
-        $contextname = $context->get_context_name(false); // Name of the course or coursemod.
 
         $courseid = null;
         $coursemodule = null;
@@ -103,7 +95,7 @@ class observers {
                 // Blocks can be added at all levels, but roles aren't assigned here.
                 // Though permissions can be assigned to a role using role-override.
                 // Lecturers have access to role-override for students - we should stop that perhaps.
-                // error_log("{$roleassigned} role assigned at block level for {$assigneename} by {$assignername}");
+                // error_log("{$roleassignedname} role assigned at block level for {$assigneename} by {$assignername}");
                 return;
                 break;
             case CONTEXT_MODULE:
@@ -116,32 +108,32 @@ class observers {
                 $cmtype = $DB->get_field('modules', 'name', ['id' => $coursemodule->module]);
                 $cminstance = $DB->get_record($cmtype, ['id' => $coursemodule->instance]);
                 $courseid = $coursemodule->course;
-                // error_log("{$roleassigned} role assigned at course module level for {$assigneename} by {$assignername}");
+                // error_log("{$roleassignedname} role assigned at course module level for {$assigneename} by {$assignername}");
                 break;
             case CONTEXT_COURSE:
                 $courseid = $context->instanceid;
-                // error_log("{$roleassigned} role assigned at course level for {$assigneename} by {$assignername}");
+                // error_log("{$roleassignedname} role assigned at course level for {$assigneename} by {$assignername}");
                 break;
             case CONTEXT_COURSECAT:
                 // Coursecat level can be really dangerous as they would have control over all sub-courses.
                 // However, only dept admins have this capability.
                 $coursecat = $DB->get_record('course_categories', ['id' => $context->instanceid]);
-                // error_log("{$roleassigned} role assigned at coursecat level for {$assigneename} by {$assignername}");
+                // error_log("{$roleassignedname} role assigned at coursecat level for {$assigneename} by {$assignername}");
                 break;
             case CONTEXT_USER:
                 // User level, shouldn't be a problem as students can add blocks to /my pages.
-                // error_log("{$roleassigned} role assigned at user level for {$assigneename} by {$assignername}");
+                // error_log("{$roleassignedname} role assigned at user level for {$assigneename} by {$assignername}");
                 return;
                 break;
             default:
                 // System level, complete no no, but only admins can do that.
-                // error_log("{$roleassigned} role assigned at system level for {$assigneename} by {$assignername}");
+                // error_log("{$roleassignedname} role assigned at system level for {$assigneename} by {$assignername}");
                 break;
         }
                
         $subjectdata = new stdClass();
         $bodydata = new stdClass();
-        $bodydata->roleassigned = $roleassigned;
+        $bodydata->roleassigned = $roleassignedname;
         $params = ['id' => $assigner->id];
         
         if ($courseid) {
@@ -187,6 +179,9 @@ class observers {
         }
 
         // error_log(print_r($bodydata, true));
+        // error_log($subject);
+        // error_log($assignerbody);
+        // error_log($body);
 
         $recipients = [];
         // Always include the admin user.

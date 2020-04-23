@@ -1,7 +1,5 @@
 # moodle-local_enrolmentwatcher
 
-** Warning - This is well broken. Do not try to use. **
-
 This plugin is being developed to demonstrate a technique to manage staff enrolling students with an inappropriate role in Moodle.
 
 This plugin has been created for the Moodle conference in Dublin 2020.
