@@ -45,10 +45,15 @@ class observers {
             return;
         }
         $config = get_config('local_enrolmentwatcher');
+
+        if (empty($config->filtervalue)) {
+            // No filter has been set, so no filtering can be done.
+            return;
+        }
         
         $assignee = $DB->get_record('user', ['id' => $event->relateduserid]);
         $field = null;
-        if (strpos($config->filterfield, 'uip') === 0) {
+        if (strpos($config->filterfield, 'uif') === 0) {
             $fieldparts = explode('_', $config->filterfield);
             $field = $DB->get_field('user_info_data', 'data', ['fieldid' => $fieldparts[1], 'userid' => $assignee->id]);
         } else {
