@@ -38,7 +38,7 @@ $string['roleassignment_appendassignerbody'] = 'Append assigner message';
 $string['roleassignment_appendassignerbody_desc'] = 'Should a copy of the message sent to the role assigner also be sent to the extra recipients?';
 $string['roleassignment_assignerbody'] = '<p>Are you sure you want <strong>{$a->assignee}</strong> to have the 
   <strong>{$a->roleassigned}</strong> role on {$a->item}?</p>
-            <p>You are seeing this message because {$a->assignee} is a student, and they should be added to modules via Modular.</p>
+            <p>You are seeing this message because {$a->assignee} is a student, and they should be added to modules via <a href="mailto:modular@chi.ac.uk">Modular@chi.ac.uk</a> <sup>[<a href="#note1">1</a>]</sup>.</p>
             <h2>Warning!</h2>
             <p>If you have given them the {$a->roleassigned} role, they will be able to:</p>
             <ul>
@@ -49,7 +49,8 @@ $string['roleassignment_assignerbody'] = '<p>Are you sure you want <strong>{$a->
             <h2>What should I do?</h2>
             <ul>
               <li>Unenrol them if they should be enrolled as a student</li>
-              <li>Speak to {$a->assignee} to ensure they have correctly enrolled with <a href="mailto:modular@chi.ac.uk">Modular</a> <sup>[<a href="#note1">1</a>]</sup></li>
+              <li>If you wish for a PhD student to have a lecturer role, please contact <a href="mailto:tel@chi.ac.uk">tel@chi.ac.uk</a></li>
+              <li>Speak to {$a->assignee} to ensure they have correctly enrolled with <a href="mailto:modular@chi.ac.uk">Modular@chi.ac.uk</a> <sup>[<a href="#note1">1</a>]</sup></li>
               <li>Speak to Modular yourself <sup>[<a href="#note1">1</a>]</sup></li>
               <li>Check you haven\'t used {$a->assignee}\'s student account instead of their staff account (if applicable) <sup>[<a href="#note2">2</a>]</sup></li>
             </ul>
