@@ -15,11 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Enrolment watcher settings file.
  * @package   local_enrolmentwatcher
  * @author    Mark Sharp <m.sharp@chi.ac.uk
- * @copyright 2020 University of Chichester {@link www.chi.ac.uk}
+ * @copyright 2020 University of Chichester {@link https://www.chi.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-*/
+ */
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -31,7 +32,6 @@ $settings = new admin_settingpage('local_enrolmentwatcher', new lang_string('plu
 $ADMIN->add('localplugins', $settings);
 
 // User field to check.
-// email, idnumber, profile fields
 $options = [
     'email' => new lang_string('email'),
     'idnumber' => new lang_string('idnumber'),

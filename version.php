@@ -15,15 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Version file for enrolment watcher.
  * @package   local_enrolmentwatcher
  * @author    Mark Sharp <m.sharp@chi.ac.uk
- * @copyright 2020 University of Chichester {@link www.chi.ac.uk}
+ * @copyright 2020 University of Chichester {@link https://www.chi.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-*/
+ */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2020022601;
+$plugin->version = 2020022602;
 $plugin->requires = 2017111302;
 $plugin->component = "local_enrolmentwatcher";
 $plugin->maturity = MATURITY_STABLE;

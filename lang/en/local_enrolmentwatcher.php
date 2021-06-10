@@ -15,11 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Language pack for enrolment watcher
  * @package   local_enrolmentwatcher
  * @author    Mark Sharp <m.sharp@chi.ac.uk
- * @copyright 2020 University of Chichester {@link www.chi.ac.uk}
+ * @copyright 2020 University of Chichester {@link https://www.chi.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-*/
+ */
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -36,7 +37,7 @@ $string['roleassignment'] = 'Role assignments';
 
 $string['roleassignment_appendassignerbody'] = 'Append assigner message';
 $string['roleassignment_appendassignerbody_desc'] = 'Should a copy of the message sent to the role assigner also be sent to the extra recipients?';
-$string['roleassignment_assignerbody'] = '<p>Are you sure you want <strong>{$a->assignee}</strong> to have the 
+$string['roleassignment_assignerbody'] = '<p>Are you sure you want <strong>{$a->assignee}</strong> to have the
   <strong>{$a->roleassigned}</strong> role on {$a->item}?</p>
             <p>You are seeing this message because {$a->assignee} is a student, and they should be added to modules via <a href="mailto:modular@chi.ac.uk">Modular@chi.ac.uk</a> <sup>[<a href="#note1">1</a>]</sup>.</p>
             <h2>Warning!</h2>
@@ -54,13 +55,13 @@ $string['roleassignment_assignerbody'] = '<p>Are you sure you want <strong>{$a->
               <li>Speak to Modular yourself <sup>[<a href="#note1">1</a>]</sup></li>
               <li>Check you haven\'t used {$a->assignee}\'s student account instead of their staff account (if applicable) <sup>[<a href="#note2">2</a>]</sup></li>
             </ul>
-            <p><a id="note1" title="note1"><strong>Note 1:</strong></a> Changes to the student record system are reflected in Moodle on the following working day. 
+            <p><a id="note1" title="note1"><strong>Note 1:</strong></a> Changes to the student record system are reflected in Moodle on the following working day.
               If a student requires <em>immediate</em> access, please let Modular know and they will arrange this.</p>
             <p><a id="note2" title="note2"><strong>Note 2:</strong></a> Student accounts have @stu.chi.ac.uk as part of their email address.</p>
             <h2>Data protection breach</h2>
             <p>This is a possible breach of data protection legislation as it may be giving unauthorised access to private information that {$a->assignee}
-              is not entitled to. <strong>Please do not ignore this email.</strong> 
-              A copy has been sent to the TEL team (<a href="mailto:tel@chi.ac.uk">tel@chi.ac.uk</a>) 
+              is not entitled to. <strong>Please do not ignore this email.</strong>
+              A copy has been sent to the TEL team (<a href="mailto:tel@chi.ac.uk">tel@chi.ac.uk</a>)
               and the Data Protection Officer (<a href="mailto:dpofficer@chi.ac.uk">dpofficer@chi.ac.uk</a>).</p>';
 
 $string['roleassignment_coursemodules'] = 'Enable for course modules';
