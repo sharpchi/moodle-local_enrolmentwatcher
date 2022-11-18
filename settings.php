@@ -33,8 +33,10 @@ $ADMIN->add('localplugins', $settings);
 
 // User field to check.
 $options = [
+    'department' => new lang_string('department'),
     'email' => new lang_string('email'),
     'idnumber' => new lang_string('idnumber'),
+    'institution' => new lang_string('institution')
 ];
 $uifs = $DB->get_records('user_info_field', [], 'name ASC', 'id, shortname, name');
 foreach ($uifs as $uif) {
