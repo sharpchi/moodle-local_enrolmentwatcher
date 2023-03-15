@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2020022602;
+$plugin->version = 2020022605;
 $plugin->requires = 2017111302;
 $plugin->component = "local_enrolmentwatcher";
 $plugin->maturity = MATURITY_STABLE;

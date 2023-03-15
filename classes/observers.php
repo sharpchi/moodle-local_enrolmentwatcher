@@ -172,8 +172,16 @@ class observers {
         }
 
         $subject = html_to_text(get_string('roleassignment_roleassignedsubject', 'local_enrolmentwatcher', $subjectdata));
-        $assignerbody = get_string('roleassignment_assignerbody', 'local_enrolmentwatcher', $bodydata);
-        $body = get_string('roleassignment_roleassignedbody', 'local_enrolmentwatcher', $bodydata);
+        // $assignerbody = get_string('roleassignment_assignerbody', 'local_enrolmentwatcher', $bodydata);
+        // $body = get_string('roleassignment_roleassignedbody', 'local_enrolmentwatcher', $bodydata);
+        $body = \local_enrolmentwatcher\helper::prepare_message(
+            'roleassignment_message_body',
+            (array)$bodydata
+        );
+        $assignerbody = \local_enrolmentwatcher\helper::prepare_message(
+            'roleassignment_roleassignedbody',
+            (array)$bodydata
+        );
 
         if ($config->roleassignment_appendassignerbody) {
             $body = $body . "\n<p>++++++++++++++++++++++++++++++++++</p>\n" . $assignerbody;

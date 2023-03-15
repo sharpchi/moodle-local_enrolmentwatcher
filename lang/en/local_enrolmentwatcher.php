@@ -37,44 +37,47 @@ $string['roleassignment'] = 'Role assignments';
 
 $string['roleassignment_appendassignerbody'] = 'Append assigner message';
 $string['roleassignment_appendassignerbody_desc'] = 'Should a copy of the message sent to the role assigner also be sent to the extra recipients?';
-$string['roleassignment_assignerbody'] = '<p>Are you sure you want <strong>{$a->assignee}</strong> to have the
-  <strong>{$a->roleassigned}</strong> role on {$a->item}?</p>
-            <p>You are seeing this message because {$a->assignee} is a student, and they should be added to modules via <a href="mailto:modular@chi.ac.uk">Modular@chi.ac.uk</a> <sup>[<a href="#note1">1</a>]</sup>.</p>
-            <h2>Warning!</h2>
-            <p>If you have given them the {$a->roleassigned} role, they will be able to:</p>
-            <ul>
-              <li>see all student data in this module</li>
-              <li>change or delete your module content</li>
-              <li>submit and view Turnitin Assignments for other people</li>
-            </ul>
-            <h2>What should I do?</h2>
-            <ul>
-              <li>Unenrol them if they should be enrolled as a student</li>
-              <li>If you wish for a PhD student to have a lecturer role, please contact <a href="mailto:tel@chi.ac.uk">tel@chi.ac.uk</a></li>
-              <li>Speak to {$a->assignee} to ensure they have correctly enrolled with <a href="mailto:modular@chi.ac.uk">Modular@chi.ac.uk</a> <sup>[<a href="#note1">1</a>]</sup></li>
-              <li>Speak to Modular yourself <sup>[<a href="#note1">1</a>]</sup></li>
-              <li>Check you haven\'t used {$a->assignee}\'s student account instead of their staff account (if applicable) <sup>[<a href="#note2">2</a>]</sup></li>
-            </ul>
-            <p><a id="note1" title="note1"><strong>Note 1:</strong></a> Changes to the student record system are reflected in Moodle on the following working day.
-              If a student requires <em>immediate</em> access, please let Modular know and they will arrange this.</p>
-            <p><a id="note2" title="note2"><strong>Note 2:</strong></a> Student accounts have @stu.chi.ac.uk as part of their email address.</p>
-            <h2>Data protection breach</h2>
-            <p>This is a possible breach of data protection legislation as it may be giving unauthorised access to private information that {$a->assignee}
-              is not entitled to. <strong>Please do not ignore this email.</strong>
-              A copy has been sent to the TEL team (<a href="mailto:tel@chi.ac.uk">tel@chi.ac.uk</a>)
-              and the Data Protection Officer (<a href="mailto:dpofficer@chi.ac.uk">dpofficer@chi.ac.uk</a>).</p>';
 
 $string['roleassignment_coursemodules'] = 'Enable for course modules';
 $string['roleassignment_coursemodules_desc'] = '<p>You can assign roles on course modules (activities and resources).</p>
   <p>Since roles can only be assigned to people who have already been enrolled, notifications for role assignment on course modules might be overkill.</p>';
 
-  $string['roleassignment_desc'] = 'When a student has been assigned a role other than student, a message is sent to a set of recipients.';
+$string['roleassignment_desc'] = 'When a student has been assigned a role other than student, a message is sent to a set of recipients.';
 
 $string['roleassignment_extrarecipients'] = 'Extra recipients';
 $string['roleassignment_extrarecipients_desc'] = 'List of extra recipients of the message besides the assigner. One username per line.';
 
-$string['roleassignment_roleassignedbody'] = '<p>{$a->assignee} has been assigned the {$a->roleassigned} role on {$a->item} by {$a->assigner}.</p>
-<p>Please check that this is correct by contacting {$a->assigner}.</p>';
+$string['roleassignment_message'] = 'Message body';
+$string['roleassignment_message_desc'] = 'Message body for the email that will be sent to the person enrolling a student and other recipients.
+[[assignee]], [[assigner]], [[item]], [[roleassigned]] will all be filled in automatically. Please replace [[editme]] with your own values.';
+$string['roleassignment_message_body'] = '<p>Are you sure you want <strong>[[assignee]]</strong> to have the
+    <strong>[[roleassigned]]</strong> role on [[item]]?</p>
+    <p>You are seeing this message because [[assignee]] is a student, and they should be added to modules via 
+        <a href="mailto:[[editme]]">[[editme]]</a>.</p>
+    <h2>Warning!</h2>
+    <p>If you have given them the [[roleassigned]] role, they will be able to:</p>
+    <ul>
+        <li>see all student data in this module</li>
+        <li>change or delete your module content</li>
+        <li>submit and view Turnitin Assignments for other people</li>
+    </ul>
+    <h2>What should I do?</h2>
+    <ul>
+        <li>Unenrol them if they should be enrolled as a student</li>
+        <li>If you wish for a PhD student to have a lecturer role, please contact <a href="mailto:[[editme]]">[[editme]]</a></li>
+        <li>Speak to [[assignee]] to ensure they have correctly enrolled with <a href="mailto:[[editme]]">[[editme]]</a></li>
+        <li>Speak to Student records yourself</li>
+        <li>Check you haven\'t used [[assignee]]\'s student account instead of their staff account (if applicable)</li>
+    </ul>
+    <h2>Data protection breach</h2>
+    <p>This is a possible breach of data protection legislation as it may be giving unauthorised access to private information that [[assignee]]
+        is not entitled to. <strong>Please do not ignore this email.</strong>
+        A copy has been sent to the TEL team (<a href="mailto:[[editme]]">[[editme]]</a>)
+        and the Data Protection Officer (<a href="mailto:[[editme]]">[[editme]]</a>).</p>';
+
+
+$string['roleassignment_roleassignedbody'] = '<p>[[assignee]] has been assigned the [[roleassigned]] role on [[item]] by [[assigner]].</p>
+<p>Please check that this is correct by contacting [[assigner]].</p>';
 $string['roleassignment_roleassignedsubject'] = 'Role assignment alert: {$a->item}';
 
 $string['roleassignment_sendtoassigner'] = 'Send message to role assigner';

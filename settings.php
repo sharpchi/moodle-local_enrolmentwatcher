@@ -90,3 +90,9 @@ $title = new lang_string('roleassignment_appendassignerbody', 'local_enrolmentwa
 $description = new lang_string('roleassignment_appendassignerbody_desc', 'local_enrolmentwatcher');
 $setting = new admin_setting_configcheckbox($name, $title, $description, true);
 $settings->add($setting);
+
+$name = 'local_enrolmentwatcher/roleassignment_message_body';
+$title = new lang_string('roleassignment_message', 'local_enrolmentwatcher');
+$desc = new lang_string('roleassignment_message_desc', 'local_enrolmentwatcher');
+$default = new lang_string('roleassignment_message_body', 'local_enrolmentwatcher');
+$settings->add(new admin_setting_confightmleditor($name, $title, $desc, $default, PARAM_RAW));
